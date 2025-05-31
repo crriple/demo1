@@ -1,4 +1,5 @@
 import { Image, StyleSheet, View } from 'react-native';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { alertImage, searchImage, sidebarImage } from '../utils/index';
 
 
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
     },
     rightIcons: {
         flexDirection: 'row',
-        gap: 20,
+        gap: wp('10%'),
     }
 })
 

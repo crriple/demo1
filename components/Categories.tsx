@@ -1,4 +1,5 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 const categoryList = [
   { name: 'Business', color: '#2563EB' },
@@ -55,51 +56,53 @@ const Categories = ({ tasks = [] }: { tasks?: Task[] }) => {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 12,
+    fontSize: wp('3%'),
     color: '#A0A3BD',
-    marginBottom: 15,
+    marginBottom: hp('1.875%'),
     letterSpacing: 1,
     fontWeight: 'bold',
+    marginLeft: wp('10%'),
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    gap: 16,
+    marginLeft: wp('10%'),
+    gap: wp('3%'),
+    marginRight: wp('10%'),
   },
   card: {
     backgroundColor: '#0A1747',
-    borderRadius: 18,
-    padding: 18,
-    width: 140,
-    marginRight: 12,
+    borderRadius: wp('4.5%'),
+    padding: wp('4.5%'),
+    width: wp('45%'),
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: hp('0.25%') },
     shadowOpacity: 0.15,
-    shadowRadius: 8,
+    shadowRadius: wp('2%'),
     elevation: 4,
   },
   count: {
     color: '#A0A3BD',
-    fontSize: 13,
-    marginBottom: 6,
+    fontSize: wp('3.25%'),
+    marginBottom: hp('0.75%'),
   },
   name: {
     color: 'white',
-    fontSize: 20,
+    fontSize: wp('5%'),
     fontWeight: 'bold',
-    marginBottom: 16,
+    marginBottom: hp('2%'),
   },
   progressBg: {
-    height: 6,
+    height: hp('0.75%'),
     backgroundColor: '#23336C',
-    borderRadius: 6,
+    borderRadius: hp('0.75%'),
     width: '100%',
     overflow: 'hidden',
   },
   progressBar: {
-    height: 6,
-    borderRadius: 6,
+    height: hp('0.75%'),
+    borderRadius: hp('0.75%'),
   },
 });
 

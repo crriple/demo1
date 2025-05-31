@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { calendarImage, flagImage, folderImage, forkImage, moonImage } from '../utils/index';
 
 interface AddProps {
@@ -23,7 +24,7 @@ const Add = ({ onClose, onAddTask }: AddProps) => {
     <View style={styles.overlay}>
       <View style={styles.container}>
         <Pressable onPress={onClose} style={styles.closeBtn}>
-          <Image source={forkImage} style={{ width: 35, height: 35 }} />
+          <Image source={forkImage} style={{ width: wp('10%'), height: wp('10%') }} />
         </Pressable>
         <TextInput
           style={styles.input}
@@ -70,36 +71,36 @@ const styles = StyleSheet.create({
   container: {
     width: '90%',
     backgroundColor: '#fff',
-    borderRadius: 24,
-    padding: 24,
+    borderRadius: wp('6%'),
+    padding: wp('6%'),
     alignItems: 'center',
     position: 'relative',
   },
   closeBtn: {
     position: 'absolute',
-    top: 16,
-    right: 16,
-    width: 40 ,
-    height: 40,
-    borderRadius: 20,
+    top: hp('2%'),
+    right: wp('4%'),
+    width: wp('10%'),
+    height: wp('10%'),
+    borderRadius: wp('5%'),
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
   },
   closeText: {
-    fontSize: 28,
+    fontSize: wp('7%'),
     color: '#B0B3C7',
   },
   input: {
     width: '100%',
     borderBottomColor: '#E0E0E0',
-    fontSize: 22,
+    fontSize: wp('5.5%'),
     color: '#6E7491',
-    marginTop: 40,
-    marginBottom: 32,
-    paddingVertical: 8,
-    borderWidth: 0, // 明确无边框
-    borderBottomWidth: 0, // 明确无底线
+    marginTop: hp('5%'),
+    marginBottom: hp('4%'),
+    paddingVertical: hp('1%'),
+    borderWidth: 0,
+    borderBottomWidth: 0,
   },
 
   row: {
@@ -107,35 +108,35 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginBottom: 32,
+    marginBottom: hp('4%'),
   },
   dateBtn: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: 16,
-    paddingHorizontal: 18,
-    paddingVertical: 8,
-    marginRight: 16,
+    borderRadius: wp('4%'),
+    paddingHorizontal: wp('4.5%'),
+    paddingVertical: hp('1%'),
+    marginRight: wp('4%'),
     borderWidth: 1,
     borderColor: '#E0E0E0',
   },
   dateText: {
     color: '#A0A3BD',
-    fontSize: 16,
+    fontSize: wp('4%'),
   },
   circleBtn: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    width: wp('9%'),
+    height: wp('9%'),
+    borderRadius: wp('4.5%'),
     borderWidth: 1,
     borderColor: '#A0A3BD',
     justifyContent: 'center',
     alignItems: 'center',
   },
   circle: {
-    width: 16,
-    height: 16,
-    borderRadius: 8,
+    width: wp('4%'),
+    height: wp('4%'),
+    borderRadius: wp('2%'),
     backgroundColor: '#A0A3BD',
   },
   iconRow: {
@@ -143,29 +144,29 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 48,
-    paddingHorizontal: 24,
+    marginBottom: hp('6%'),
+    paddingHorizontal: wp('6%'),
   },
   iconImg: {
-    width: 20,
-    height: 20,
-    marginHorizontal: 20,
+    width: wp('5%'),
+    height: wp('5%'),
+    marginHorizontal: wp('5%'),
   },
   icImg: {
-    width: 20,
-    height: 20,
-    marginRight: 8,
+    width: wp('5%'),
+    height: wp('5%'),
+    marginRight: wp('2%'),
   },
   newTaskBtn: {
     width: '100%',
     backgroundColor: '#2563EB',
-    borderRadius: 24,
-    paddingVertical: 16,
+    borderRadius: wp('6%'),
+    paddingVertical: hp('2%'),
     alignItems: 'center',
   },
   newTaskText: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: wp('4.5%'),
     fontWeight: 'bold',
   },
 });
