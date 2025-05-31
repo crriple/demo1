@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { deleteImage } from '../utils/index';
 
 type TastProps = {
@@ -11,14 +12,15 @@ type TastProps = {
 
 const Tast = ({ tasks, onDeleteTask, onToggleDone }: TastProps) => {
     const swipeableRefs = useRef<(Swipeable | null)[]>([]);
+    // useRef不会触发组件的重新渲染
     const openedRow = useRef<number | null>(null);
-
+    // 关闭删除任务的动画
     const closeOpenedRow = () => {
         if (openedRow.current !== null && swipeableRefs.current[openedRow.current]) {
             swipeableRefs.current[openedRow.current]?.close();
         }
     };
-
+    // 渲染删除任务的按钮
     const renderRightActions = (index: number) => (
         <TouchableOpacity style={styles.deleteBtn} onPress={() => onDeleteTask(index)}>
             <Image source={deleteImage} style={styles.deleteImg} />
@@ -34,11 +36,13 @@ const Tast = ({ tasks, onDeleteTask, onToggleDone }: TastProps) => {
                     <Swipeable
                         key={task.text + idx}
                         renderRightActions={() => renderRightActions(idx)}
-                        ref={ref => swipeableRefs.current[idx] = ref}
+                        ref={(ref: Swipeable | null) => { swipeableRefs.current[idx] = ref; }}
+                        // 打开删除任务的动画
                         onSwipeableWillOpen={() => {
                             closeOpenedRow();
                             openedRow.current = idx;
                         }}
+                        // 关闭删除任务的动画
                         onSwipeableClose={() => {
                             if (openedRow.current === idx) {
                                 openedRow.current = null;
@@ -64,44 +68,45 @@ const Tast = ({ tasks, onDeleteTask, onToggleDone }: TastProps) => {
 
 const styles = StyleSheet.create({
     title: {
-        fontSize: 12,
+        fontSize: wp('3%'),
         color: '#A0A3BD',
-        marginBottom: 12,
+        marginBottom: hp('1.5%'),
         letterSpacing: 1,
         fontWeight: 'bold',
-        marginTop: 20,
+        marginTop: hp('2.5%'),
     },
     container: {
-        marginTop: 10,
+        marginTop: hp('1.25%'),
+        marginBottom: hp('5%'),
     },
     task: {
         backgroundColor: '#041954',
         flexDirection: 'row',
-        borderRadius: 15,
-        height: 60,
+        borderRadius: wp('3.75%'),
+        height: hp('7.5%'),
         alignItems: 'center',
-        marginBottom: 5,
+        marginBottom: hp('0.625%'),
     },
     circle: {
-        width: 24,
-        height: 24,
-        borderRadius: 12,
+        width: wp('6%'),
+        height: wp('6%'),
+        borderRadius: wp('3%'),
         borderWidth: 2,
         borderColor: '#A0A3BD',
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: 20,
+        marginLeft: wp('5%'),
         backgroundColor: 'transparent',
     },
     check: {
         color: '#fff',
-        fontSize: 16,
+        fontSize: wp('4%'),
         fontWeight: 'bold',
     },
     taskText: {
-        marginLeft: 20,
+        marginLeft: wp('5%'),
         color: 'white',
-        fontSize: 16,
+        fontSize: wp('4%'),
     },
     lineThrough: {
         textDecorationLine: 'line-through',
@@ -111,21 +116,21 @@ const styles = StyleSheet.create({
         backgroundColor: '#3450A1',
         justifyContent: 'center',
         alignItems: 'center',
-        width: 60,
-        height: 60,
-        borderTopLeftRadius: 15,
-        borderBottomLeftRadius: 15,
-        marginBottom: 5,
+        width: wp('15%'),
+        height: hp('7.5%'),
+        borderTopLeftRadius: wp('3.75%'),
+        borderBottomLeftRadius: wp('3.75%'),
+        marginBottom: hp('0.625%'),
     },
     deleteText: {
         color: 'white',
         fontWeight: 'bold',
-        fontSize: 16,
+        fontSize: wp('4%'),
     },
     deleteImg: {
-        width: 25,
-        height: 25,
-        marginRight: 15,
+        width: wp('6.25%'),
+        height: wp('6.25%'),
+        marginRight: wp('3.75%'),
     },
 })
 

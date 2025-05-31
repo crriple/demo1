@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import 'react-native-gesture-handler';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import Add from '../components/Add';
 import Categories from '../components/Categories';
 import Navbar from '../components/Navbar';
@@ -30,17 +31,25 @@ function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <View style={styles.container}>
-        <ScrollView contentContainerStyle={styles.content}>
+      <ScrollView contentContainerStyle={{ minHeight: hp('100%') }}>
+        <View style={styles.content}>
           <Navbar />
           <Text style={styles.title}>What's up,Olivia!</Text>
-          <Categories tasks={tasks} />
+        </View>
+        <Categories tasks={tasks} />
+
+        <View style={styles.content1}>
           <Tast tasks={tasks} onDeleteTask={handleDeleteTask} onToggleDone={handleToggleDone} />
+        </View>
         </ScrollView>
         <TouchableOpacity style={styles.fab} onPress={() => setShowAdd(true)}>
           <Image source={addImage} style={{ width: 32, height: 32 }} />
         </TouchableOpacity>
+        
         {showAdd && <Add onClose={() => setShowAdd(false)} onAddTask={handleAddTask} />}
       </View>
+      
+      
     </GestureHandlerRootView>
   );
 }
@@ -52,32 +61,36 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   content: {
-    marginTop: 60,
-    marginLeft: 40,
-    marginRight: 40,
+    marginTop: hp('7.5%'),
+    marginLeft: wp('10%'),
+    marginRight: wp('10%'),
+  },
+  content1: {
+    marginLeft: wp('10%'),
+    marginRight: wp('10%'),
   },
   title: {
     color: 'white',
-    fontSize: 30,
+    fontSize: wp('7.5%'),
     fontWeight: 'bold',
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: hp('2.5%'),
+    marginBottom: hp('2.5%'),
   },
   fab: {
     position: 'absolute',
-    right: 24,
-    bottom: 32,
-    width: 56,
-    height: 56,
-    borderRadius: 28,
+    right: wp('6%'),
+    bottom: hp('4%'),
+    width: wp('14%'),
+    height: wp('14%'),
+    borderRadius: wp('7%'),
     backgroundColor: 'rgb(235,6,255)',
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 8,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: hp('0.25%') },
     shadowOpacity: 0.3,
-    shadowRadius: 4,
+    shadowRadius: wp('1%'),
   },
 
 });
