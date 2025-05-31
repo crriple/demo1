@@ -14,7 +14,7 @@ const Tast = ({ tasks, onDeleteTask, onToggleDone }: TastProps) => {
     const swipeableRefs = useRef<(Swipeable | null)[]>([]);
     // useRef不会触发组件的重新渲染
     const openedRow = useRef<number | null>(null);
-    // 关闭删除任务的动画
+    // 实例存在关闭删除任务的动画
     const closeOpenedRow = () => {
         if (openedRow.current !== null && swipeableRefs.current[openedRow.current]) {
             swipeableRefs.current[openedRow.current]?.close();
